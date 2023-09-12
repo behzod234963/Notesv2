@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/homeScreen2"
+        android:name="uz.datatalim.notes.UI.Fragments.HomeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen2_to_addNotes"
+            app:destination="@id/addNotes" />
+        <action
+            android:id="@+id/action_homeScreen2_to_details"
+            app:destination="@id/details" />
+        <argument android:name="HomeArgs"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/details"
+        android:name="uz.datatalim.notes.UI.Fragments.Details"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="DetailsArgs"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNotes"
+        android:name="uz.datatalim.notes.UI.Fragments.AddNotes"
+        android:label="fragment_add_notes"
+        tools:layout="@layout/fragment_add_notes" />
+</navigation>

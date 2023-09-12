@@ -40,12 +40,12 @@ class HomeScreen : Fragment() {
 
     private fun initView() {
 
-        notes=ArrayList()
-        homeAdapter= HomeAdapter()
-        homeAdapter.submitList(notes)
         loadNotes()
+        homeAdapter= HomeAdapter()
+        notes=ArrayList()
         binding.rvHome.adapter=HomeAdapter()
         binding.rvHome.layoutManager=LinearLayoutManager(requireContext())
+        homeAdapter.submitList(notes)
 
         binding.btnAddHome.setOnClickListener {
 
@@ -63,9 +63,13 @@ class HomeScreen : Fragment() {
                 response: Response<ArrayList<Note>>
             ) {
 
-                notes.clear()
-                notes.addAll(response.body()!!)
-                homeAdapter.submitList(notes)
+                if (response.isSuccessful){
+
+                    notes.clear()
+                    notes.addAll(response.body()!!)
+                    homeAdapter.submitList(notes)
+
+                }
 
             }
 

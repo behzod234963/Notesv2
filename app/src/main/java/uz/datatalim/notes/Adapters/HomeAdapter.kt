@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import uz.datatalim.notes.Models.HomeModel
+import uz.datatalim.notes.Models.Note
 import uz.datatalim.notes.R
 
 class HomeAdapter:RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     var onClick:((Int)->Unit)?=null
-    val notes:ArrayList<HomeModel> = ArrayList()
+    val notes:ArrayList<Note> = ArrayList()
 
-    fun submitList(list:ArrayList<HomeModel>){
+    fun submitList(list:ArrayList<Note>){
 
         this.notes.clear()
         this.notes.addAll(list)
@@ -37,7 +37,13 @@ class HomeAdapter:RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         holder.apply {
 
             tvText.text=notes.text
-            llItemHome.setBackgroundResource(notes.color)
+            llItemHome.setBackgroundResource(notes.color!!)
+
+            llItemHome.setOnClickListener {
+
+                onClick?.invoke(position)
+
+            }
 
         }
 
